@@ -1,5 +1,6 @@
 import sys
 
+from pathlib import Path
 
 def main():
     print("Hello, ocean of code! 🌊")
@@ -25,11 +26,47 @@ def main():
         print("✗ Pygame not found")
         return
     
+    print("\nModule Roll Call:")
+    try:
+        from system_sym.organism import Organism
+        org = Organism()
+        print(f"✓ {org.respond()}")
+    except ImportError as e:
+        print("✗ Organism module not found")
+        print(e)
+        return
+    try:        
+        from system_sym.environment import Environment
+        env = Environment()
+        print(f"✓ {env.respond()}")
+    except ImportError as e:
+        print("✗ Environment module not found")
+        print(e)
+        return
+    try:
+        from system_sym.simulation import Simulation
+        sim = Simulation()
+        print(f"✓ {sim.respond()}")
+    except ImportError as e:
+        print("✗ Simulation module not found")
+        print(e)
+        return
+
+    try:
+        from system_sym.utils import respond as utils_respond
+        print(f"✓ {utils_respond()}")
+    except ImportError as e:
+        print("✗ Utils module not found")
+        print(e)
+        return
+        
     print("\n🎉 All systems go!")
     print("\nModes available:")
     print("  - God Mode: Tune the cosmos, watch populations evolve")
     print("  - Creature Mode: Be an organism, survive the ecosystem")
     print("\nReady to build your biosphere! 🌱")
 
-if __name__ == "__main__":
+if __name__ == "__main__"and __package__ is None:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    __package__ = "system_sym"
     main()
