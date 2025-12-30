@@ -29,7 +29,7 @@ def main():
     print("\nModule Roll Call:")
     try:
         from system_sym.organism import Organism
-        org = Organism()
+        org = Organism(1,1)
         print(f"✓ {org.respond()}")
     except ImportError as e:
         print("✗ Organism module not found")
@@ -65,6 +65,19 @@ def main():
     print("  - God Mode: Tune the cosmos, watch populations evolve")
     print("  - Creature Mode: Be an organism, survive the ecosystem")
     print("\nReady to build your biosphere! 🌱")
+    
+    print("\n🎉 All systems go! Starting simulation...")
+    print("\nControls:")
+    print("  ESC - Quit")
+    print("  SPACE - Spawn new organism")
+    print("\nLaunching window...\n")
+    
+    from system_sym.simulation import Simulation
+    
+    sim = Simulation()
+    sim.run()
+    
+    print("\nSimulation ended. Goodbye! 🌊")
 
 if __name__ == "__main__"and __package__ is None:
     sys.path.insert(0, str(Path(__file__).parent.parent))
